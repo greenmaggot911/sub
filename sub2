@@ -1,0 +1,55 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      "https://1.1.1.1/dns-query",
+      "https://8.8.8.8/dns-query"
+    ]
+  },
+  "inbounds": [
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "interface_name": "singbox",
+      "address": [
+        "172.19.0.1/30",
+        "fd00::1/126"
+      ],
+      "auto_route": true,
+      "strict_route": true
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "节点",
+      "type": "vless",
+      "server": "mathbushnis2.netlib.re",
+      "server_port": 443,
+      "uuid": "26c14b83-8c1a-4a8d-f21b-092bf26f864a",
+      "flow": "",
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {
+          "Host": "mathbushnis2.netlib.re"
+        }
+      },
+      "tls": {
+        "enabled": true,
+        "server_name": "mathbushnis2.netlib.re",
+        "insecure": false,
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      }
+    }
+  ],
+  "route": {
+    "final": "节点"
+  }
+}
