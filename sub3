@@ -1,0 +1,21 @@
+[
+  {
+    "tag": "89|ZslD.love@xray.com",
+    "type": "vless",
+    "server": "mathbushnis2.netlib.re",
+    "server_port": 443,
+    "uuid": "26c14b83-8c1a-4a8d-f21b-092bf26f864a",
+    "packet_encoding": "xudp",
+    "transport": {
+      "type": "ws",
+      "path": "/ws",
+      "headers": { "Host": "mathbushnis2.netlib.re" }
+    },
+    "tls": {
+      "enabled": true,
+      "server_name": "mathbushnis2.netlib.re",
+      "insecure": false,
+      "utls": { "enabled": true, "fingerprint": "chrome" }
+    }
+  }
+]
