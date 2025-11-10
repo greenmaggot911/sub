@@ -5,31 +5,22 @@
 
   "dns": {
     "strategy": "prefer_ipv4",
-    "final": "doh-intl",
-    "fakeip": {
-      "enabled": true,
-      "inet4_range": "198.18.0.0/16"
-    },
+    "final": "remote-dns",
     "servers": [
-      { "tag": "local", "address": "local" },
-
-      // 境内 DoH：直连，给 geosite:cn 用，避免走代理再解析
-      { "tag": "doh-cn", "address": "https://doh.pub/dns-query", "detour": "direct" },
-
-      // 海外 DoH：默认最终解析，用来防污染
-      { "tag": "doh-intl", "address": "https://1.1.1.1/dns-query" },
-
-      // 可选：再加一个谷歌 DoH 兜底
-      { "tag": "doh-google", "address": "https://dns.google/dns-query" },
-
-      // 广告/无效域名直接返回空成功码（可用于拦截）
-      { "tag": "dns-block", "address": "rcode://success" }
+      {
+        "tag": "local-dns",
+        "address": "223.5.5.5",
+        "detour": "direct"
+      },
+      {
+        "tag": "remote-dns",
+        "address": "1.1.1.1",
+        "detour": "direct"
+      }
     ],
     "rules": [
-      { "geosite": [ "cn" ], "server": "doh-cn" },
-      { "domain_suffix": [ "lan", "local" ], "server": "local" },
-      { "rule_set": [ "geosite-category-ads-all" ], "server": "dns-block" },
-      { "server": "doh-intl" }
+      { "geosite": ["cn"], "server": "local-dns" },
+      { "domain_suffix": ["lan", "local"], "server": "local-dns" }
     ]
   },
 
@@ -38,24 +29,16 @@
       "type": "mixed",
       "tag": "mixed-in",
       "listen": "127.0.0.1",
-      "listen_port": 7890
+      "listen_port": 7890,
+      "sniff": true, 
+      "sniff_override_destination": true
     }
-    /* 需要 TUN 才能“全局接管”的话再加一条：
-    {
-      "type": "tun",
-      "tag": "tun-in",
-      "mtu": 9000,
-      "stack": "system",
-      "auto_route": false,
-      "strict_route": false
-    }
-    */
   ],
 
   "outbounds": [
     {
       "type": "vless",
-      "tag": "m31Y.love",
+      "tag": "proxy",
       "server": "mathbushnis2.netlib.re",
       "server_port": 62789,
       "uuid": "e848aa55-4be7-4769-f367-c84fabd54960",
@@ -73,30 +56,41 @@
         }
       }
     },
-    { "type": "direct", "tag": "direct" },
-    { "type": "block",  "tag": "block"  },
-    { "type": "dns",    "tag": "dns"    }
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "dns",
+      "tag": "dns"
+    }
   ],
 
   "route": {
+    "domain_strategy": "prefer_ipv4",
     "auto_detect_interface": true,
-    "final": "m31Y.love",
+
+    "geoip": {
+      "download_url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip.db"
+    },
+    "geosite": {
+      "download_url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite.db"
+    },
+
+    "final": "proxy",
     "rules": [
-      // DNS 请求走内置 dns 出站
-      { "protocol": [ "dns" ], "outbound": "dns" },
+      { "protocol": ["dns"], "outbound": "dns" },
 
-      // 局部代理：国内直连，非国内走代理
-      { "geoip": [ "private" ], "outbound": "direct" },
-      { "geosite": [ "cn" ], "outbound": "direct" },
-      { "geosite": [ "geolocation-!cn" ], "outbound": "m31Y.love" },
+      { "geoip": ["private"], "outbound": "direct" },
 
-      // 可选：广告域名丢弃
-      { "rule_set": [ "geosite-category-ads-all" ], "outbound": "block" }
-    ],
-    "rule_set": [
-      { "type": "remote", "format": "binary", "tag": "geosite", "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite.db" },
-      { "type": "remote", "format": "binary", "tag": "geoip",   "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip.db" },
-      { "type": "remote", "format": "binary", "tag": "geosite-category-ads-all", "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/category-ads-all.db" }
+      { "geoip": ["cn"], "outbound": "direct" },
+      { "geosite": ["cn"], "outbound": "direct" },
+
+      { "geosite": ["geolocation-!cn"], "outbound": "proxy" }
     ]
   }
 }
