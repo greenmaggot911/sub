@@ -1,1 +1,27 @@
-eyJ2ZXJzaW9uIjoxLCJvdXRib3VuZHMiOlt7InR5cGUiOiJ2bGVzcyIsInRhZyI6IlpaWkQubG92ZSIsInNlcnZlciI6Im1hdGhidXNobmlzMi5uZXRsaWIucmUiLCJzZXJ2ZXJfcG9ydCI6ODQ0OCwidXVpZCI6IjY5NTA4NjhjLTQ2NDgtNDk2OS1lZDRhLWMzZTgwNGI5OWY3NSIsImZsb3ciOiIiLCJwYWNrZXRfZW5jb2RpbmciOiIiLCJ0bHMiOnsiZW5hYmxlZCI6dHJ1ZSwic2VydmVyX25hbWUiOiJtYXRoYnVzaG5pczIubmV0bGliLnJlIiwidXRscyI6eyJlbmFibGVkIjp0cnVlLCJmaW5nZXJwcmludCI6ImNocm9tZSJ9fSwidHJhbnNwb3J0Ijp7InR5cGUiOiJ3cyIsInBhdGgiOiIvd3MiLCJoZWFkZXJzIjp7fX19XX0=
+{
+  "version": 1,
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "ZZZD.love",
+      "server": "mathbushnis2.netlib.re",
+      "server_port": 8448,
+      "uuid": "6950868c-4648-4969-ed4a-c3e804b99f75",
+      "flow": "",
+      "packet_encoding": "",
+      "tls": {
+        "enabled": true,
+        "server_name": "mathbushnis2.netlib.re",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {}
+      }
+    }
+  ]
+}
