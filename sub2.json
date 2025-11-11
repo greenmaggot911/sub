@@ -1,23 +1,26 @@
 {
-  "type": "vless",
-  "tag": "43_ZZZD",
-  "server": "mathbushnis2.netlib.re",
-  "server_port": 8448,
-  "uuid": "6950868c-4648-4969-ed4a-c3e804b99f75",
-  "flow": "",
-  "transport": {
-    "type": "ws",
-    "path": "/ws",
-    "headers": {
-      "Host": "mathbushnis2.netlib.re"
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "ZZZD.love",
+      "server": "mathbushnis2.netlib.re",
+      "server_port": 8448,
+      "uuid": "6950868c-4648-4969-ed4a-c3e804b99f75",
+      "flow": "",
+      "packet_encoding": "",
+      "tls": {
+        "enabled": true,
+        "server_name": "mathbushnis2.netlib.re",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {}
+      }
     }
-  },
-  "tls": {
-    "enabled": true,
-    "server_name": "mathbushnis2.netlib.re",
-    "utls": {
-      "enabled": true,
-      "fingerprint": "chrome"
-    }
-  }
+  ]
 }
