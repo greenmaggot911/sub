@@ -20,8 +20,11 @@
       "transport": {
         "type": "ws",
         "path": "/ws",
-        "headers": {}
+        "headers": {
+          "Host": "mathbushnis2.netlib.re"
+        }
       }
     }
   ]
 }
+
