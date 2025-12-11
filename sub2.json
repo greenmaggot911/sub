@@ -1,1 +1,31 @@
-dmxlc3M6Ly82OTUwODY4Yy00NjQ4LTQ5NjktZWQ0YS1jM2U4MDRiOTlmNzVAMTU1LjEzOC4yMjEuNjg6ODQ0OD90eXBlPXdzJnNlY3VyaXR5PXRscyZwYXRoPSUyRndzJnNuaT1tYXRoYnVzaG5pczIubmV0bGliLnJlJmZwPWNocm9tZSZob3N0PW1hdGhidXNuaXMyLm5ldGxpYi5yZSZhbGxvd0luc2VjdXJlPTEjNDN8WlpZRC5sb3ZlQHhyYXkuY29t
+{
+  "version": 1,
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "43|ZZZD.love@xray.com",
+      "server": "155.138.221.68",
+      "server_port": 8448,
+      "uuid": "6950868c-4648-4969-ed4a-c3e804b99f75",
+      "flow": "",
+      "packet_encoding": "",
+      "tls": {
+        "enabled": true,
+        "server_name": "mathbushnis2.netlib.re",
+        "insecure": true, 
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ws",
+        "headers": {
+          "Host": "mathbushnis2.netlib.re"
+        }
+      }
+    }
+    // 如果您有多个节点，可以在这里添加更多 outbounds 对象
+  ]
+}
