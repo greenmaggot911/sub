@@ -2,8 +2,9 @@
   "outbounds": [
     {
       "type": "vless",
-      "tag": "节点",
-      "server": "mathbushnis2.netlib.re",
+      "tag": "节点-修复版",
+      // 1. 【修改点】直接使用 IP 地址连接，绕过 DNS 故障
+      "server": "155.138.221.68", 
       "server_port": 443,
       "uuid": "26c14b83-8c1a-4a8d-f21b-092bf26f864a",
       "flow": "",
@@ -12,13 +13,22 @@
         "type": "ws",
         "path": "/ws",
         "headers": {
-          "Host": "mathbushnis2.netlib.re"
+          // Host 头部必须保留域名，告诉服务器要访问哪个虚拟主机
+          "Host": "mathbushnis2.netlib.re" 
         }
       },
       "tls": {
         "enabled": true,
-        "server_name": "mathbushnis2.netlib.re",
-        "insecure": false
+        // SNI (server_name) 必须保留域名，用于服务器提供正确的证书
+        "server_name": "mathbushnis2.netlib.re", 
+        // 2. 【修改点】设置为 true，允许连接时跳过证书校验。
+        //    这是因为您用 IP 连接了一个证书是为域名颁发的服务器。
+        "insecure": true, 
+        // 3. 【优化点】增加 uTLS 伪装，行为与第一个配置一致
+        "utls": {
+            "enabled": true,
+            "fingerprint": "chrome"
+        }
       }
     }
   ]
