@@ -12,7 +12,7 @@
       "tls": {
         "enabled": true,
         "server_name": "mathbushnis2.netlib.re",
-        "insecure": true, 
+        "insecure": true, // 确保这个是 true
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
@@ -26,6 +26,6 @@
         }
       }
     }
-    // 如果您有多个节点，可以在这里添加更多 outbounds 对象
+    // 您可以在这里添加其他出站和DNS配置
   ]
 }
