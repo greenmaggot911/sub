@@ -3,15 +3,20 @@
   "outbounds": [
     {
       "type": "vless",
-      "tag": "ZZZD.love",
-      "server": "mathbushnis2.netlib.re",
-      "server_port": 8448,
+      "tag": "节点-FINAL-A",
+      // 1. 【修改】用 IP 地址代替域名，绕过 DNS 问题
+      "server": "155.138.221.68",
+      // 保持您配置的端口 8448
+      "server_port": 8448, 
       "uuid": "6950868c-4648-4969-ed4a-c3e804b99f75",
       "flow": "",
       "packet_encoding": "",
       "tls": {
         "enabled": true,
-        "server_name": "mathbushnis2.netlib.re",
+        // SNI 和 Host 必须保留域名，告诉服务器正确的路由
+        "server_name": "mathbushnis2.netlib.re", 
+        // 2. 【修改】强制忽略证书校验错误，解决 IP/域名不匹配问题
+        "insecure": true, 
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
@@ -27,4 +32,3 @@
     }
   ]
 }
-
