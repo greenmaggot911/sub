@@ -42,5 +42,32 @@
       "type": "direct",
       "tag": "direct"
     }
-  ]
+  ],
+  "route": {
+    "rules": [
+      {
+        "domain_suffix": [
+          "cn",
+          "baidu.com",
+          "qq.com",
+          "weixin.qq.com",
+          "taobao.com",
+          "jd.com",
+          "163.com",
+          "126.com",
+          "sina.com.cn",
+          "sohu.com",
+          "microsoft.com",
+          "windowsupdate.com",
+          "windows.com",
+          "office.com",
+          "live.com",
+          "msftconnecttest.com",
+          "msftncsi.com"
+        ],
+        "outbound": "direct"
+      }
+    ],
+    "final": "我的传线7刀"
+  }
 }
