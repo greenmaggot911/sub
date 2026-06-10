@@ -57,13 +57,19 @@
           "126.com",
           "sina.com.cn",
           "sohu.com",
+          "bing.com",
           "microsoft.com",
           "windowsupdate.com",
           "windows.com",
           "office.com",
           "live.com",
           "msftconnecttest.com",
-          "msftncsi.com"
+          "msftncsi.com",
+          "storedescriptions.md.mp.microsoft.com",
+          "displaycatalog.mp.microsoft.com",
+          "arc.msn.com",
+          "go.microsoft.com",
+          "storeedgefd.dsx.mp.microsoft.com"
         ],
         "outbound": "direct"
       }
