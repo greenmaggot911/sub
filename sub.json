@@ -2,13 +2,53 @@
   "log": {
     "level": "info"
   },
-  "dns": {},
+  "dns": {
+    "servers": [
+      {
+        "tag": "proxy-dns",
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "我的传线7刀"
+      },
+      {
+        "tag": "local-dns",
+        "address": "https://223.5.5.5/dns-query",
+        "detour": "direct"
+      }
+    ],
+    "rules": [
+      {
+        "domain_suffix": [
+          "cn",
+          "baidu.com",
+          "qq.com",
+          "weixin.qq.com",
+          "taobao.com",
+          "jd.com",
+          "163.com",
+          "126.com",
+          "sina.com.cn",
+          "sohu.com",
+          "bing.com",
+          "microsoft.com",
+          "windowsupdate.com",
+          "windows.com",
+          "office.com",
+          "live.com",
+          "msftconnecttest.com",
+          "msftncsi.com"
+        ],
+        "server": "local-dns"
+      }
+    ],
+    "final": "proxy-dns",
+    "strategy": "ipv4_only"
+  },
   "inbounds": [
     {
       "type": "tun",
       "tag": "tun-in",
       "inet4_address": "172.19.0.1/30",
-      "mtu": 9000,
+      "mtu": 1500,
       "auto_route": true,
       "strict_route": true,
       "stack": "mixed",
